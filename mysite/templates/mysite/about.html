@@ -1,0 +1,105 @@
+
+{% extends "mysite/base.html" %}
+
+
+{% load static %}
+
+{% block body %}
+     <!-- HOME -->
+    <section class="section-hero overlay inner-page bg-image"
+             style="background-image: url({% static 'mysite/images/hero_1.jpg' %});" id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">About Us</h1>
+                    <div class="custom-breadcrumbs">
+                        <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>About Us</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   
+    <section class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center" data-aos="fade">
+            <h2 class="section-title mb-3">Our Team</h2>
+          </div>
+        </div>
+
+        <div class="row align-items-center block__69944">
+
+          <div class="col-md-6">
+            <img src="{% static 'mysite/images/person_6.jpg' %}" alt="Image" class="img-fluid mb-4 rounded">
+          </div>
+
+          <div class="col-md-6">
+            <h3>Yashwanth Samala</h3>
+            <p class="text-muted">Developer</p>
+            <p>Innovation is led by those who know their stuff, whether it's the first job of their life or the latest project in a career decades in the making. In ARP, innovation depends not only on brilliant individuals, but also on a community of specialists, each focused on what we can do instead of what's been done. We foster this culture by giving experts the room to take bold yet informed risks that lead to breakthrough.</p>
+            <div class="social mt-4">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+
+          <div class="col-md-6 order-md-2 ml-md-auto">
+            <img src="{% static 'mysite/images/person_5.jpg' %}" alt="Image" class="img-fluid mb-4 rounded">
+          </div>
+
+          <div class="col-md-6">
+            <h3>Asha Yalla</h3>
+            <p class="text-muted">Developer</p>
+            <p>The people working here in machine learning and AI are building amazing experiences into every Apple product, allowing millions to do what they never imagined. Because Apple fully integrates hardware and software across every device, these researchers and engineers collaborate more effectively to improve the user experience while protecting user data. Come make an impact with the products you create and the research you publish.</p>
+            <div class="social mt-4">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center block__69944">
+
+          <div class="col-md-6">
+            <img src="{% static 'mysite/images/person_6.jpg' %}" alt="Image" class="img-fluid mb-4 rounded">
+          </div>
+
+          <div class="col-md-6">
+            <h3>Sai Charan Kadari</h3>
+            <p class="text-muted">Developer</p>
+            <p>I'm passionate about product quality and creating a great customer experience. The AI industry is always evolving and as part of the Google's team, it's exciting to see how the products and technologies we work on help solve real problems and make people's lives better. It's a big plus to work in an environment that encoourages innovation while still focusing on data and technical expertise.</p>
+            <div class="social mt-4">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+
+          <div class="col-md-6 order-md-2 ml-md-auto">
+            <img src="{% static 'mysite/images/person_5.jpg' %}" alt="Image" class="img-fluid mb-4 rounded">
+          </div>
+
+          <div class="col-md-6">
+            <h3>Sharanya Gandla</h3>
+            <p class="text-muted">Developer</p>
+            <p>Happy to be part of the Apple's next gen product team involving, it's good to know that our team's iphone work helps millions of people talk with family and friends, but it's the collaboration and respect that energize me everyday. Colleagues ask me questions, I ask them questions, and together, we have answers.</p>
+            <div class="social mt-4">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock body %}
