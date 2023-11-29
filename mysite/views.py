@@ -16,6 +16,28 @@ import re
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 
+import openai, os 
+from dotenv import load_dotenv 
+load_dotenv ()
+api_key = os.getenv("OPENAI_KEY", None)
+def chatbot (request):
+    chatbot_response = None
+    if api_key is not None and request.method == 'POST':
+        openai.api_key = api_key
+        user_input = request.POST.get ('user_input')
+        prompt = user_input
+        response = openai. Completion. create(
+            engine = 'text-davinci-003',
+            prompt = prompt,
+            max_tokens=256,
+            # stop="."
+            temperature=0.5
+
+        )
+    
+        chatbot_response = response["choices"][0]["text"]
+        question = request
+    return render(request, "mysite/main.html", {"request": request, "response":chatbot_response})
 
 # write your code
 def index(request):

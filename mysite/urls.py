@@ -13,6 +13,7 @@ urlpatterns = [
     path("register.html", views.register, name="register"),
     path("logout.html", views.logout, name="logout"),
     path("about.html", views.about, name="about"),
+    path("main.html", views.chatbot, name="main"),
     path("job-listings.html", views.job_listings, name="job-listings"),
     path("job-single/<int:id>/", views.job_single, name="job_single"),
     path("post-job.html", views.post_job, name="post-job"),
