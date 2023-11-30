@@ -22,7 +22,7 @@ from django.views.generic import ListView
 import openai, os 
 from dotenv import load_dotenv 
 load_dotenv()
-api_key = "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"
+api_key = os.getenv("OPENAI_KEY", None)
 def chatbot(request):
     chatbot_response = None
     if api_key is not None and request.method == 'POST':
