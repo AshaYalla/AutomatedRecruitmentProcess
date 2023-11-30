@@ -1,3 +1,6 @@
+import pathlib
+
+import PyPDF2
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -18,9 +21,9 @@ from django.views.generic import ListView
 
 import openai, os 
 from dotenv import load_dotenv 
-load_dotenv ()
-api_key = os.getenv("OPENAI_KEY", None)
-def chatbot (request):
+load_dotenv()
+api_key = "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"
+def chatbot(request):
     chatbot_response = None
     if api_key is not None and request.method == 'POST':
         openai.api_key = api_key
@@ -38,6 +41,8 @@ def chatbot (request):
         chatbot_response = response["choices"][0]["text"]
         question = request
     return render(request, "mysite/main.html", {"request": request, "response":chatbot_response})
+
+
 
 # write your code
 def index(request):
@@ -292,6 +297,74 @@ def applyjob(request, id):
 
     return render(request, 'mysite/applyjob.html', {'company_name': job.company_name, 'title': job.title})
 
+@login_required(login_url='login')
+def resumequestions(request, id, resume):
+    resumes_data = [resume]
+
+    filepath = 'media/'
+    resumes = [str(item) for item in resumes_data]
+    print("resumes: ", resumes)
+    resumes_new = [item.split(':')[0] for item in resumes]
+    resumes_new = [item for item in resumes_new if item != '']
+
+    LIST_OF_FILES = resumes_new
+
+    print("Total Files to Parse\t", len(LIST_OF_FILES))
+    print("####### PARSING ########")
+    for indx, file in enumerate(LIST_OF_FILES):
+        print(indx, file)
+        if not pathlib.Path(filepath + file).is_file():
+            continue
+
+        Temp = file.split('.')
+        print(Temp)
+
+        if Temp[1] == "pdf" or Temp[1] == "Pdf" or Temp[1] == "PDF":
+            try:
+                # print("This is PDF", indx)
+                with open(filepath + file, 'rb') as pdf_file:
+                    # read_pdf = PyPDF2.PdfFileReader(pdf_file)
+
+                    read_pdf = PyPDF2.PdfReader(pdf_file, strict=False)
+                    # print("resume", indx,": ", read_pdf)
+                    number_of_pages = len(read_pdf.pages)
+                    for page_number in range(number_of_pages):
+                        page = read_pdf.pages[page_number]
+                        page_content = page.extract_text()
+                        # print(page_content)
+                        page_content = page_content.replace('\n', ' ').replace('\f', '').replace('\\uf[0-9]+',
+                                                                                                 '').replace(
+                            '\\u[0-9]+', '').replace('\\ufb[0-9]+', '')
+                        # page_content.replace("\r", "")
+
+                        Temp_pdf = str(page_content)
+
+            except Exception as e:
+                    print(e)
+
+
+    chatbot_response = ""
+    user_input = ""
+    if api_key is not None and request.method == 'POST':
+        openai.api_key = api_key
+        user_input = request.POST.get('user_input')
+        prompt = "Given a resume as follows: " + Temp_pdf + ". Using the data in the resume answer the below question" + user_input
+        response = openai.Completion.create(
+            engine='text-davinci-003',
+            prompt=prompt,
+            max_tokens=256,
+            # stop="."
+            temperature=0.5
+
+        )
+
+        chatbot_response = response["choices"][0]["text"]
+        question = request
+
+    return render(request, "mysite/main2.html", {"resume_name": '/media/'+resumes_data[0], "user_input": user_input, "request": request, "response": chatbot_response})
+
+
+
 
 # @login_required
 # def ranking(request, id):
@@ -317,8 +390,70 @@ def ranking(request, id):
     resumes_data = Apply_job.objects.filter(company_name=job_data.company_name, title=job_data.title,
                                             cv__isnull=False)
     result_arr = screen.res(resumes_data, job_data)
-    return render(request, 'mysite/ranking.html',
-                  {'items': result_arr, 'company_name': job_data.company_name, 'title': job_data.title})
+
+    resumes_data = [resume["name"] for resume in result_arr.values()][0:3]
+
+    filepath = 'media/'
+    resumes = [str(item) for item in resumes_data]
+    print("resumes: ", resumes)
+    resumes_new = [item.split(':')[0] for item in resumes]
+    resumes_new = [item for item in resumes_new if item != '']
+
+    LIST_OF_FILES = resumes_new
+    Temp_pdf = ""
+
+    print("Total Files to Parse\t", len(LIST_OF_FILES))
+    print("####### PARSING ########")
+    for indx, file in enumerate(LIST_OF_FILES):
+        print(indx, file)
+        if not pathlib.Path(filepath + file).is_file():
+            continue
+
+        Temp = file.split('.')
+        print(Temp)
+
+        if Temp[1] == "pdf" or Temp[1] == "Pdf" or Temp[1] == "PDF":
+            try:
+                # print("This is PDF", indx)
+                with open(filepath + file, 'rb') as pdf_file:
+                    # read_pdf = PyPDF2.PdfFileReader(pdf_file)
+
+                    read_pdf = PyPDF2.PdfReader(pdf_file, strict=False)
+                    # print("resume", indx,": ", read_pdf)
+                    number_of_pages = len(read_pdf.pages)
+                    for page_number in range(number_of_pages):
+                        page = read_pdf.pages[page_number]
+                        page_content = page.extract_text()
+                        # print(page_content)
+                        page_content = page_content.replace('\n', ' ').replace('\f', '').replace('\\uf[0-9]+',
+                                                                                                 '').replace(
+                            '\\u[0-9]+', '').replace('\\ufb[0-9]+', '')
+                        # page_content.replace("\r", "")
+
+                        Temp_pdf = Temp_pdf + str(page_content)
+
+            except Exception as e:
+                print(e)
+
+    chatbot_response = ""
+    user_input = ""
+    if api_key is not None and request.method == 'POST':
+        openai.api_key = api_key
+        user_input = request.POST.get('user_input')
+        prompt = "Given a resumes of multiple applicants as follows: " + Temp_pdf + ". Using the above data answer the below questions comparing all the candidates: " + user_input
+        response = openai.Completion.create(
+            engine='text-davinci-003',
+            prompt=prompt,
+            max_tokens=256,
+            # stop="."
+            temperature=0.5
+
+        )
+
+        chatbot_response = response["choices"][0]["text"]
+        question = request
+
+    return render(request, 'mysite/ranking.html', {'items': result_arr, 'company_name': job_data.company_name, 'title': job_data.title, "user_input": user_input, "request": request, "response": chatbot_response})
 
 
 class SearchView(ListView):

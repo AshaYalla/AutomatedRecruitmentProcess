@@ -21,5 +21,6 @@ urlpatterns = [
     path("applyjob/<int:id>/", views.applyjob, name="applyjob"),
     path("ranking/<int:id>/", views.ranking, name="ranking"),
     path('search/', SearchView.as_view(), name='search'),
+    path('ranking/<int:id>/resume/<str:resume>/', views.resumequestions, name="main2"),
 
 ]
