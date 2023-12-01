@@ -86,6 +86,8 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         # print("user: ", username)
+
+
         # print("password: ", password)
         user = auth.authenticate(username=username, password=password)
         if user:
