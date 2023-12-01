@@ -1,0 +1,61 @@
+{% extends "mysite/base.html" %}
+
+
+{% load static %}
+
+{% block body %}
+    <section class="section-hero overlay inner-page bg-image"
+    style="background-image: url({% static 'mysite/images/hero_1.jpg' %});" id="home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1 class="text-white font-weight-bold">Ask Your Question</h1>
+                    <div class="custom-breadcrumbs">
+                        <a href="#">Home</a> <span class="mx-2 slash">/</span>
+                        <span class="text-white"><strong>{{ company_name }}</strong></span>
+                        <span class="text-white mx-2 slash">/</span>
+                        <span class="text-white"><strong>{{ title }}</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="site-section" id="next-section">
+    <div class="container">
+    <div class="row">
+
+    <div class="col-lg-6 mb-5 mb-lg-0">
+        <h3 class="text font-weight ">Ask Your Question</h3>
+        <br>
+
+        <form method="post" style="margin-bottom:2rem">
+            {% csrf_token %}
+            <textarea class="form-control" name="user_input">{{ user_input }}</textarea>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+
+
+
+        {% if response %} 
+            <div>
+                {{request | safe}}
+
+                <br>
+            
+            {{response | safe}}
+            </div> 
+        {% endif %}
+
+    </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0">
+        <iframe  src="{{resume_name}}#toolbar=0&navpanes=0&scrollbar=0" width="130%" height="800px"></iframe>
+        </div>
+
+</div>
+</div>
+</section>
+
+
+{% endblock body %}
