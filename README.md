@@ -40,28 +40,25 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
 
 The Django project for the automated resume tracking system will utilize a complex system
 architecture to ensure efficacy and security. The following technology stack is utilized:
-● Django Framework: Our application is developed on the Django web framework. Django's powerful
+
+Django Framework: Our application is developed on the Django web framework. Django's powerful
 features and strong ecosystem make a good choice for creating a resume tracking system.
-● Front-End: We developed the front-end using web technologies like HTML, CSS, and JavaScript.
-This technology stack can deliver a user-friendly experience while keeping the front-end development
-straightforward and light weight.
-DocuSign Envelope ID: A405DCAC-D13B-4078-AF63-CD5EA6393E63
-17
-● Back-End: The back-end is powered by Python and Django. Django's built-in features for data
-modeling, authentication, and routing tools are beneficial to manage resumes efficiently. The back end
-will handle user authentication, resume storage, and retrieval.
-● Database: To store resume data securely, we will use the MySQL relational database. MySQL is a
-reliable and well-established choice for managing structured data, ensuring data consistency, and
-enabling complex queries for efficient resume management.
-● Load Balancing: To distribute traffic and ensure high availability, we are implementing AWS Elastic
-Load Balancer. It will enhance system performance and prevent service disruptions.
-● Monitoring and Logging: CloudWatch, an Amazon Web Services (AWS) service, is integrated to
-monitor system performance, log events, and track application metrics. This enables proactive issue
-detection and optimization.
-The resulting architecture will provide a scalable, high-performance, and secure platform for tracking
-and managing resumes. Users will benefit from a seamless experience, with robust authentication, data
-security, and integration with external services, making the resume tracking process efficient and
-effective.
+
+Front-End: We developed the front-end using web technologies like HTML, CSS, and JavaScript.
+This technology stack can deliver a user-friendly experience while keeping the front-end development straightforward and light weight.
+
+Back-End: The back-end is powered by Python and Django. Django's built-in features for data
+modeling, authentication, and routing tools are beneficial to manage resumes efficiently. The back end will handle user authentication, resume storage, and retrieval.
+
+Database: To store resume data securely, we will use the MySQL relational database. MySQL is a reliable and well-established choice for managing structured data, ensuring data consistency, and enabling complex queries for efficient resume management.
+
+Load Balancing: To distribute traffic and ensure high availability, we are implementing AWS Elastic Load Balancer. It will enhance system performance and prevent service disruptions.
+
+Monitoring and Logging: CloudWatch, an Amazon Web Services (AWS) service, is integrated to
+monitor system performance, log events, and track application metrics. This enables proactive issue detection and optimization.
+
+The resulting architecture will provide a scalable, high-performance, and secure platform for tracking and managing resumes. Users will benefit from a seamless experience, with robust authentication, data security, and integration with external services, making the resume tracking process efficient and effective.
+
 
 - **Register/Login:** A user should be an authentic user to post a job or apply for a job.
 - **View Job:** A user can browse or search for the job.
