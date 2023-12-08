@@ -1,4 +1,7 @@
-# <p align="left">**Smart Recruitment System**</p>
+# <p align="left">**Automated Recruitment Process**</p>
+
+
+
 Finding the best candidate for a specific job from a recruitment process within the shortest time is a challenge for a company nowadays. Nowadays, there are too many applicants, and it takes too much time and effort to get suitable candidates for a company’s job. The Human Resources team needs more workforce to scrutinize the resumes or CVs of candidates. 
 
 The project aims to develop a more flexible, realistic and expert resume ranker system that ranks the resumes effectively and efficiently and gives the best candidate or candidates. This is a simple Django-based resume ranker website where recruiter users post jobs, candidate-users apply for the job, fill in the required data, and upload resumes. The system ranks the resumes based on the document similarity of the job description and the resumes using the KNN model. It saves human efforts, time, and cost.
@@ -26,17 +29,7 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
             }
         }
         ```
-    - **SQLite**:
-      ```
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': 'mydatabase', # This is where you put the name of the db file. 
-                         # If one doesn't exist, it will be created at migration time.
-            }
-        }
-      ```
-    - **Others**: See documentation, put appropriate database settings and install connector.
+
   - Generate migration files of the project via terminal: `python manage.py makemigrations`
   - Migrate the project files from terminal: `python manage.py migrate`
   - Create admin user for admin panel from terminal: `python manage.py createsuperuser`. And enter the username, email and password. 
@@ -44,6 +37,32 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
 
 # System Architecture
 ![](ProjectPic/1_Recruitment_System_Architecture.png)
+
+The Django project for the automated resume tracking system will utilize a complex system
+architecture to ensure efficacy and security. The following technology stack is utilized:
+● Django Framework: Our application is developed on the Django web framework. Django's powerful
+features and strong ecosystem make a good choice for creating a resume tracking system.
+● Front-End: We developed the front-end using web technologies like HTML, CSS, and JavaScript.
+This technology stack can deliver a user-friendly experience while keeping the front-end development
+straightforward and light weight.
+DocuSign Envelope ID: A405DCAC-D13B-4078-AF63-CD5EA6393E63
+17
+● Back-End: The back-end is powered by Python and Django. Django's built-in features for data
+modeling, authentication, and routing tools are beneficial to manage resumes efficiently. The back end
+will handle user authentication, resume storage, and retrieval.
+● Database: To store resume data securely, we will use the MySQL relational database. MySQL is a
+reliable and well-established choice for managing structured data, ensuring data consistency, and
+enabling complex queries for efficient resume management.
+● Load Balancing: To distribute traffic and ensure high availability, we are implementing AWS Elastic
+Load Balancer. It will enhance system performance and prevent service disruptions.
+● Monitoring and Logging: CloudWatch, an Amazon Web Services (AWS) service, is integrated to
+monitor system performance, log events, and track application metrics. This enables proactive issue
+detection and optimization.
+The resulting architecture will provide a scalable, high-performance, and secure platform for tracking
+and managing resumes. Users will benefit from a seamless experience, with robust authentication, data
+security, and integration with external services, making the resume tracking process efficient and
+effective.
+
 - **Register/Login:** A user should be an authentic user to post a job or apply for a job.
 - **View Job:** A user can browse or search for the job.
 - **Apply Job:** An authentic users can apply for a job.  <!-- - **Participate assessment:** -->
